@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "566736660813",
+    "firebase_url": "https://powerchat-13c7b.firebaseio.com",
+    "project_id": "powerchat-13c7b",
+    "storage_bucket": "powerchat-13c7b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:566736660813:android:e4e9057210198064",
+        "android_client_info": {
+          "package_name": "com.claymore.chat.ubiquo.powerchat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "566736660813-56fao5l2sp2r6i6afl5ikt5gmho214q6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.claymore.chat.ubiquo.powerchat",
+            "certificate_hash": "a1e9477f61e90e445221d463c5c9722b1b295251"
+          }
+        },
+        {
+          "client_id": "566736660813-9qna7ceg2t87rihli681pgqsu66utljh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmDvw8j-aWGKnXNQQ6gDWPgVoDK9HMG58"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "566736660813-9qna7ceg2t87rihli681pgqsu66utljh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
