@@ -1,5 +1,6 @@
 package com.claymore.chat.ubiquo.powerchat
 
+import android.Manifest
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
@@ -9,16 +10,33 @@ import android.support.v4.app.FragmentTransaction
 import android.support.v4.app.FragmentManager
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.ProgressBar
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import es.dmoral.toasty.Toasty
 import java.util.*
+import kotlin.collections.ArrayList
 
 data class User (var phone : String="NA", var provider : String="NA", var registration : Long=0, var last_login : Long=0,var img : String="NA" )
+
+sealed class AppPermission(val permissionName: String, val requestCode: Int,  val deniedMessageId: String) {
+
+    object CAMERA:  AppPermission(
+            permissionName = Manifest.permission.CAMERA,
+            requestCode = 1,
+            deniedMessageId = "camera denied")
+
+    object READ_CONTACTS : AppPermission(
+            permissionName = Manifest.permission.READ_CONTACTS,
+            requestCode = 100,
+            deniedMessageId = "Contacts denied")
+}
 
 fun AppCompatActivity.addFragment(container : Int, frag : Fragment) {
     supportFragmentManager.customTransaction { add(container, frag) }
@@ -80,17 +98,18 @@ fun Fragment.inflateInContainer(root : Int , container : ViewGroup?) : ViewGroup
     return this.layoutInflater.inflate(root, container, false) as ViewGroup
 }
 
-inline fun View.setVisible()  { this.visibility = View.VISIBLE }
-inline fun View.setInvisible()  { this.visibility = View.INVISIBLE }
+fun View.setVisible()  { this.visibility = View.VISIBLE }
 
+fun View.setInvisible()  { this.visibility = View.INVISIBLE }
 
 inline fun FragmentManager.customTransaction(func : FragmentTransaction.() -> FragmentTransaction){
     beginTransaction().func().commit()
 }
 
-
 fun Random.inside(range: IntRange): Int {
     return range.start + nextInt(range.last - range.start)
 }
+
+
 
 

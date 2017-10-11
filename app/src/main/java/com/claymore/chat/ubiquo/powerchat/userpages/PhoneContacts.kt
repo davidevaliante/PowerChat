@@ -1,30 +1,22 @@
 package com.claymore.chat.ubiquo.powerchat.userpages
 
 
-import android.content.Context
-import android.content.pm.PackageManager
-import android.os.Build
+
+import android.app.Activity
 import android.os.Bundle
+import android.os.Handler
 import android.support.v4.app.Fragment
-import android.support.v4.content.ContextCompat.checkSelfPermission
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.ListView
-import android.widget.TextView
-import bolts.Continuation
-import bolts.Task
+import android.widget.EditText
 import com.claymore.chat.ubiquo.powerchat.*
-
-import kotlinx.android.synthetic.main.activity_main_user_page.*
 import kotlinx.android.synthetic.main.phone_card.view.*
 import kotlinx.android.synthetic.main.phone_contacts.*
-import kotlinx.android.synthetic.main.phone_contacts.view.*
-import java.util.concurrent.Callable
 import com.github.tamir7.contacts.Contact as CONTACT
 import com.github.tamir7.contacts.Contacts as CONTACTS
 
@@ -35,29 +27,30 @@ import com.github.tamir7.contacts.Contacts as CONTACTS
  * A simple [Fragment] subclass.
  */
 class PhoneContacts : Fragment()  {
+    private var contacts : ArrayList<CONTACT>? = null
+    private var phoneAdapter : PhoneRecyclerAdapter? = null
 
-    var phoneList : ListView? = null
-    val PERMISSIONS_REQUEST_READ_CONTACTS = 100
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val viewGroup = inflateInContainer(R.layout.phone_contacts, container)
-        phoneList = viewGroup.findViewById(R.id.phoneContactsList)
-
         val phoneRC = viewGroup.findViewById<RecyclerView>(R.id.phoneRC)
+        val searchBar = viewGroup.findViewById<EditText>(R.id.searchBar)
 
-        val items = CONTACTS.getQuery().find() as ArrayList<CONTACT>
-
-        activity.showInfo("Nome : ${items[0].displayName} \n ${items[0].phoneNumbers[0].number}")
-        items.forEach { Log.d("Name","Name : ${it.displayName} \n Number : ${if (it.phoneNumbers.size != 0)it.phoneNumbers[0].normalizedNumber else "nope"}") }
-
+        //ritorna tutti i contatti
+        contacts = CONTACTS.getQuery().find() as ArrayList<CONTACT>
+        phoneAdapter = PhoneRecyclerAdapter(contacts as ArrayList<CONTACT>, activity)
         phoneRC.layoutManager = LinearLayoutManager(activity)
-        phoneRC.adapter = PhoneRecyclerAdapter(items)
+        phoneRC.adapter = phoneAdapter
+        searchBar.addTextChangedListener(phoneContactsWatcher())
 
         return viewGroup
     }
 
-    class PhoneRecyclerAdapter (mylist : ArrayList<CONTACT>): RecyclerView.Adapter<PhoneViewHolder>(){
-        val contacts = mylist
+    class PhoneRecyclerAdapter (mylist : ArrayList<CONTACT>, ctx : Activity) : RecyclerView.Adapter<PhoneViewHolder>(){
+        private var contacts = mylist
+        private var letter : Char? = null
+        private val c = ctx
+
         override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): PhoneViewHolder {
             val view = LayoutInflater.from(parent?.context).inflate(R.layout.phone_card, parent, false)
             return PhoneViewHolder(view)
@@ -72,15 +65,36 @@ class PhoneContacts : Fragment()  {
            return contacts.size
         }
 
+        fun updateList(newList : ArrayList<CONTACT>){
+            contacts = newList
+            notifyDataSetChanged()
+        }
+
     }
 
     class PhoneViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
         fun bind(contact : CONTACT){
             itemView.pName.text = contact.displayName
             itemView.pPhone.text = if (contact.phoneNumbers.size != 0) contact.phoneNumbers[0].normalizedNumber else "nope"}
+    }
+
+    private fun phoneContactsWatcher() : TextWatcher{
+        return object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+            override fun afterTextChanged(s : Editable?) {
+
+                Handler().postDelayed(
+                {
+                    val temporaryList = contacts?.filter {it.displayName.toLowerCase().contains(s.toString().toLowerCase()) } as ArrayList<CONTACT>
+                    phoneAdapter?.updateList(temporaryList)
+                }, 300)
+
+            }
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
         }
-
-
+    }
 
 
 }

@@ -34,6 +34,7 @@ class Registration : Fragment() {
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val viewGroup = inflateInContainer(R.layout.fragment_registration,container)
         reg  = viewGroup.findViewById(R.id.register)
+        reg?.setOnClickListener{sendMessageOrRequest(it)}
         colorTextView(reg as TextView,"Register")
         progressBar = viewGroup.findViewById(R.id.progressBar)
         progressBar?.setInvisible()
