@@ -19,9 +19,9 @@ import kotlinx.android.synthetic.main.activity_main_user_page.*
 import kotlinx.android.synthetic.main.fragment_contacts.*
 
 
-/**
- * A simple [Fragment] subclass.
- */
+
+
+
 class Contacts : Fragment() {
 
     var adapter : FirestoreRecyclerAdapter<User, ContactsHolder>? = null

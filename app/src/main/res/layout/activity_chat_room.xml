@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey"
+    android:descendantFocusability="beforeDescendants"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    tools:context="com.claymore.chat.ubiquo.powerchat.userpages.ChatRoom">
+
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/backGroundDark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/headerContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.mikhaellopez.circularimageview.CircularImageView
+                android:id="@+id/chatImage"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginStart="12dp"
+                app:civ_border_color="@color/colorAccent"
+                app:civ_border_width="2dp"
+                app:civ_shadow_color="#8BC34A"
+                app:civ_shadow_radius="10" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="12dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/chatTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Title"
+                    android:textColor="@color/pureWhite"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/loginState"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="last login 23:30"
+                    android:textColor="@color/pureWhite" />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_below="@+id/headerContainer"
+            android:background="@drawable/main_gradient" />
+
+
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/messagesRv"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp"
+            android:orientation="horizontal"
+            android:paddingEnd="8dp">
+
+            <EditText
+                android:id="@+id/message"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Type message"
+                android:inputType="textCapSentences"
+                android:maxLines="30"
+                android:padding="16dp"
+                android:textColor="@color/pureWhite"
+                android:textColorHint="@color/shadedWhite40"
+                android:textSize="20sp"
+                android:theme="@style/EditTextColorPrimaryTheme" />
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/sendFab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|end"
+                android:paddingStart="8dp"
+                app:backgroundTint="@color/colorPrimary"
+                app:fabSize="normal"
+                app:srcCompat="@drawable/send_icon" />
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>

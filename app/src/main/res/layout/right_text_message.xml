@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/text_message_card"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    android:layout_marginEnd="4dp"
+    android:layout_marginLeft="16dp"
+    android:layout_marginStart="32dp"
+    android:layout_marginTop="8dp"
+    app:cardBackgroundColor="@color/colorPrimary"
+    app:cardCornerRadius="8dp"
+    app:contentPadding="10dp"
+    app:contentPaddingBottom="2dp">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/rightTextSender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:text="Davide Valiante"
+            android:textColor="@color/pureWhite"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/rightTextTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transparentColor"
+            android:text="I'm a text message \n efwefwefrgergerg \n egrgerg \n gergergerg"
+            android:textColor="@color/pureBlack" />
+
+        <TextView
+            android:id="@+id/rightTextTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:paddingBottom="4dp"
+            android:paddingTop="4dp"
+            android:text="18:30"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+</android.support.v7.widget.CardView>

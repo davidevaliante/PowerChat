@@ -12,4 +12,6 @@ class ContactsHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
         }
 
 
+
+
 }

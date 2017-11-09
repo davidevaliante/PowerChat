@@ -1,15 +1,16 @@
 package com.claymore.chat.ubiquo.powerchat
 import android.content.Context
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.claymore.chat.ubiquo.powerchat.loginfragments.Registration
 import com.claymore.chat.ubiquo.powerchat.userpages.MainUserPage
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import io.branch.referral.Branch
+import io.branch.referral.BranchError
 import kotlinx.android.synthetic.main.activity_launcher.*
-
-
-
+import org.json.JSONObject
 
 
 class Launcher : AppCompatActivity() {
@@ -29,9 +30,20 @@ class Launcher : AppCompatActivity() {
         }
     }
 
+    override fun onStart() {
+        super.onStart()
 
+        val branch = Branch.getInstance()
+        branch.initSession ({ linkParams, error ->
+            if(error != null) showError("An error occurred parsing invitation")
+            else{
 
+            }
+        }, this.intent.data, this)
 
+    }
+
+    override fun onNewIntent(intent: Intent?) { if(intent != null) this.intent = intent }
 
     private fun userAuthStateFrom(auth : FirebaseAuth) : Int = if(auth.currentUser == null) NOT_LOGGED else LOGGED
 

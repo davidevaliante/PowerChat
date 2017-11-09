@@ -23,6 +23,13 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
 
+    <style name="EditTextColorPrimaryTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:textColor">@color/pureWhite</item>
+        <item name="colorControlNormal">@color/backGround</item>
+        <item name="colorControlActivated">@color/colorPrimary</item>
+        <item name="colorControlHighlight">@color/colorAccent</item>
+    </style>
+
     <style name="ScrollBar.customScrollBar" parent="Widget.AppCompat.ProgressBar.Horizontal">
 
     </style>

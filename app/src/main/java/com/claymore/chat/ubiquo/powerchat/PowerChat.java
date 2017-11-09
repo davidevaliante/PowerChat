@@ -6,6 +6,7 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.github.tamir7.contacts.Contacts;
 import es.dmoral.toasty.Toasty;
+import io.branch.referral.Branch;
 import io.github.kbiakov.codeview.classifier.CodeProcessor;
 
 
@@ -17,6 +18,7 @@ public class PowerChat extends Application {
         Toasty.Config.getInstance().apply();
         CodeProcessor.init(this);
         Contacts.initialize(this);
+        Branch.getAutoInstance(this);
 
     }
 }

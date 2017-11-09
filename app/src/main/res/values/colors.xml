@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="backGround">#1e202b</color>
+    <color name="grey">#33373f</color>
     <color name="backGroundDark">#12141c</color>
     <color name="colorPrimary">#2f9aed</color>
     <color name="colorPrimaryDark">#303F9F</color>
@@ -9,5 +10,6 @@
     <color name="pureWhite">#ffff</color>
     <color name="shadedWhite40">#60ffffff</color>
     <color name="transparentColor">#00ffffff</color>
+    <color name="pureBlack">#000000</color>
 
 </resources>
